@@ -1,74 +1,161 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { UserIcon } from 'lucide-react';
+import { UserIcon, BookOpenIcon, HeartIcon, CalendarIcon } from 'lucide-react';
+
 const Profile = () => {
-  const {
-    user
-  } = useSelector((state: RootState) => state.auth);
-  const {
-    favorites
-  } = useSelector((state: RootState) => state.favorites);
-  const {
-    recipes
-  } = useSelector((state: RootState) => state.recipes);
+  const { user } = useSelector((state: RootState) => state.auth);
+  const { favorites } = useSelector((state: RootState) => state.favorites);
+  const { recipes } = useSelector((state: RootState) => state.recipes);
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
+
   const userRecipes = recipes.filter(recipe => recipe.createdBy === user?.id);
+
   if (!user) {
-    return <div className="text-center py-8">
-        <h3 className="text-xl font-semibold text-gray-600">User not found</h3>
-      </div>;
-  }
-  return <div className="max-w-3xl mx-auto">
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="bg-teal-600 px-6 py-8">
-          <div className="flex items-center">
-            <div className="bg-white rounded-full p-3 mr-4">
-              <UserIcon className="h-12 w-12 text-teal-600" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-white">{user.username}</h1>
-              <p className="text-teal-100">{user.email}</p>
-            </div>
-          </div>
+    return (
+        <div className={`text-center py-12 ${isDarkMode ? 'text-gray-300' : 'text-slate-600'}`}>
+          <h3 className="text-xl font-semibold">User not found</h3>
         </div>
-        <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <div className="bg-teal-50 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-teal-800">
-                Created Recipes
-              </h3>
-              <p className="text-3xl font-bold text-teal-600">
-                {userRecipes.length}
-              </p>
-            </div>
-            <div className="bg-red-50 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-red-800">
-                Favorite Recipes
-              </h3>
-              <p className="text-3xl font-bold text-red-500">
-                {favorites.length}
-              </p>
+    );
+  }
+
+  return (
+      <div className="max-w-4xl mx-auto">
+        <div className={`rounded-2xl overflow-hidden shadow-lg ${
+            isDarkMode ? 'bg-gray-800' : 'bg-white'
+        }`}>
+          <div className={`px-8 py-12 ${
+              isDarkMode ? 'bg-gradient-to-r from-teal-900 to-teal-800' : 'bg-gradient-to-r from-teal-500 to-teal-600'
+          }`}>
+            <div className="flex items-center gap-6">
+              <div className={`rounded-full p-4 ${
+                  isDarkMode ? 'bg-gray-800' : 'bg-white'
+              }`}>
+                <UserIcon className={`h-12 w-12 ${
+                    isDarkMode ? 'text-teal-400' : 'text-teal-600'
+                }`} />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-white mb-2">
+                  {user.username}
+                </h1>
+                <p className={`${isDarkMode ? 'text-teal-200' : 'text-teal-100'}`}>
+                  {user.email}
+                </p>
+              </div>
             </div>
           </div>
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">
-            Account Information
-          </h2>
-          <div className="space-y-3">
-            <div>
-              <p className="text-sm text-gray-500">Username</p>
-              <p className="text-gray-800">{user.username}</p>
+
+          <div className="p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className={`rounded-xl p-6 ${
+                  isDarkMode
+                      ? 'bg-gray-700 border border-gray-600'
+                      : 'bg-white border border-slate-200'
+              }`}>
+                <div className="flex items-center gap-4">
+                  <div className={`rounded-full p-3 ${
+                      isDarkMode ? 'bg-gray-800' : 'bg-teal-50'
+                  }`}>
+                    <BookOpenIcon className={`h-6 w-6 ${
+                        isDarkMode ? 'text-teal-400' : 'text-teal-600'
+                    }`} />
+                  </div>
+                  <div>
+                    <p className={`text-sm ${
+                        isDarkMode ? 'text-gray-400' : 'text-slate-600'
+                    }`}>
+                      Created Recipes
+                    </p>
+                    <p className={`text-2xl font-bold ${
+                        isDarkMode ? 'text-white' : 'text-slate-800'
+                    }`}>
+                      {userRecipes.length}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`rounded-xl p-6 ${
+                  isDarkMode
+                      ? 'bg-gray-700 border border-gray-600'
+                      : 'bg-white border border-slate-200'
+              }`}>
+                <div className="flex items-center gap-4">
+                  <div className={`rounded-full p-3 ${
+                      isDarkMode ? 'bg-gray-800' : 'bg-red-50'
+                  }`}>
+                    <HeartIcon className={`h-6 w-6 ${
+                        isDarkMode ? 'text-red-400' : 'text-red-500'
+                    }`} />
+                  </div>
+                  <div>
+                    <p className={`text-sm ${
+                        isDarkMode ? 'text-gray-400' : 'text-slate-600'
+                    }`}>
+                      Favorite Recipes
+                    </p>
+                    <p className={`text-2xl font-bold ${
+                        isDarkMode ? 'text-white' : 'text-slate-800'
+                    }`}>
+                      {favorites.length}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-gray-500">Email</p>
-              <p className="text-gray-800">{user.email}</p>
-            </div>
-            <div>
-              <p className="text-sm text-gray-500">Member Since</p>
-              <p className="text-gray-800">January 2023</p>
+
+            <div className={`rounded-xl p-6 ${
+                isDarkMode
+                    ? 'bg-gray-700 border border-gray-600'
+                    : 'bg-white border border-slate-200'
+            }`}>
+              <h2 className={`text-xl font-semibold mb-6 ${
+                  isDarkMode ? 'text-white' : 'text-slate-800'
+              }`}>
+                Account Information
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <UserIcon className={`h-5 w-5 ${
+                      isDarkMode ? 'text-gray-400' : 'text-slate-400'
+                  }`} />
+                  <div>
+                    <p className={`text-sm ${
+                        isDarkMode ? 'text-gray-400' : 'text-slate-600'
+                    }`}>
+                      Username
+                    </p>
+                    <p className={`font-medium ${
+                        isDarkMode ? 'text-white' : 'text-slate-800'
+                    }`}>
+                      {user.username}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <CalendarIcon className={`h-5 w-5 ${
+                      isDarkMode ? 'text-gray-400' : 'text-slate-400'
+                  }`} />
+                  <div>
+                    <p className={`text-sm ${
+                        isDarkMode ? 'text-gray-400' : 'text-slate-600'
+                    }`}>
+                      Member Since
+                    </p>
+                    <p className={`font-medium ${
+                        isDarkMode ? 'text-white' : 'text-slate-800'
+                    }`}>
+                      March 2025
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>;
+  );
 };
+
 export default Profile;

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {AppDispatch, RootState} from '../redux/store';
+import { AppDispatch, RootState } from '../redux/store';
 import { signup, clearError } from '../redux/slices/authSlice';
-import { UserPlusIcon, AlertCircleIcon } from 'lucide-react';
+import { AlertCircleIcon, UtensilsCrossed, Mail, Lock, User } from 'lucide-react';
 import { toast } from 'sonner';
+
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -16,7 +17,6 @@ const Signup = () => {
   const { loading, error } = useSelector((state: RootState) => state.auth);
   const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
   const dispatch = useDispatch<AppDispatch>();
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,7 +30,6 @@ const Signup = () => {
 
     try {
       const resultAction = await dispatch(signup({ username, email, password }));
-
       if (signup.fulfilled.match(resultAction)) {
         toast.success('Account created successfully!');
         navigate('/');
@@ -39,126 +38,157 @@ const Signup = () => {
       toast.error(err instanceof Error ? err.message : 'Failed to create account');
     }
   };
-  const containerClasses = `max-w-md mx-auto ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`;
-  const cardClasses = `rounded-lg shadow-md p-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`;
-  const headingClasses = `text-2xl font-bold flex items-center justify-center ${isDarkMode ? 'text-white' : 'text-gray-800'}`;
-  const subtextClasses = `mt-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`;
-  const errorClasses = `border-l-4 p-4 mb-6 flex items-start ${isDarkMode ? 'bg-red-900 border-red-700 text-red-200' : 'bg-red-100 border-red-500 text-red-700'}`;
-  const labelClasses = `block font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`;
-  const inputClasses = `w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 ${isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`;
-  const buttonClasses = `w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-4 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50 ${isDarkMode ? 'focus:ring-offset-gray-800' : ''}`;
-  const linkTextClasses = `text-gray-600 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`;
-  const linkClasses = `text-teal-600 hover:text-teal-800 font-medium ${isDarkMode ? 'text-teal-400 hover:text-teal-300' : 'text-teal-600 hover:text-teal-800'}`;
+
+  const containerClasses = `min-h-screen flex items-center justify-center p-4 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`;
+  const cardClasses = `w-full max-w-[1200px] grid md:grid-cols-2 rounded-3xl shadow-2xl overflow-hidden ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`;
+  const formSectionClasses = `p-8 lg:p-12 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`;
+  const imageSectionClasses = `relative hidden md:block`;
+  const inputWrapperClasses = `relative`;
+  const inputClasses = `w-full pl-12 pr-4 py-4 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 ${
+      isDarkMode
+          ? 'bg-gray-700/50 border-gray-600 text-white placeholder-gray-400'
+          : 'bg-gray-50 border-gray-200 placeholder-gray-400'
+  }`;
+  const inputIconClasses = `absolute left-4 top-1/2 -translate-y-1/2 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`;
+  const buttonClasses = `w-full bg-teal-600 hover:bg-teal-500 text-white font-medium py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50`;
+  const linkClasses = `text-teal-600 hover:text-teal-500 font-medium transition-colors ${isDarkMode ? 'text-teal-400 hover:text-teal-300' : ''}`;
 
   return (
       <div className={containerClasses}>
         <div className={cardClasses}>
-          <div className="text-center mb-6">
-            <h1 className={headingClasses}>
-              <UserPlusIcon className="mr-2" />
-              Sign Up
-            </h1>
-            <p className={subtextClasses}>Create your RecipeShare account</p>
-          </div>
+          <div className={formSectionClasses}>
+            <div className="mb-8 flex items-center">
+              <UtensilsCrossed className="h-8 w-8 text-[#D96115] mr-3" />
+              <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                Kitchen Library
+              </h1>
+            </div>
 
-          {(error || formError) && (
-              <div className={errorClasses}>
-                <AlertCircleIcon className="h-5 w-5 mr-2 mt-0.5" />
-                <div>
-                  <p>{error || formError}</p>
-                  {error && (
-                      <button
-                          onClick={() => dispatch(clearError())}
-                          className={`text-sm underline ${isDarkMode ? 'hover:text-red-300' : 'hover:text-red-800'}`}
-                      >
-                        Dismiss
-                      </button>
-                  )}
+            <div className="mb-12">
+              <h2 className={`text-3xl font-bold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                Create Account
+              </h2>
+              <p className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                Join our community of food lovers
+              </p>
+            </div>
+
+            {(error || formError) && (
+                <div className="mb-6 p-4 rounded-lg bg-red-500/10 border-l-4 border-red-500 text-red-500">
+                  <div className="flex items-start">
+                    <AlertCircleIcon className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p>{error || formError}</p>
+                      {error && (
+                          <button
+                              onClick={() => dispatch(clearError())}
+                              className="text-sm underline hover:text-red-600"
+                          >
+                            Dismiss
+                          </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <div className={inputWrapperClasses}>
+                  <User className={inputIconClasses} size={20}/>
+                  <input
+                      type="text"
+                      value={username}
+                      onChange={e => setUsername(e.target.value)}
+                      className={inputClasses}
+                      placeholder="Choose a username"
+                      required
+                  />
                 </div>
               </div>
-          )}
 
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label htmlFor="username" className={labelClasses}>
-                Username
-              </label>
-              <input
-                  type="text"
-                  id="username"
-                  value={username}
-                  onChange={e => setUsername(e.target.value)}
-                  className={inputClasses}
-                  required
-              />
-            </div>
+              <div>
+                <div className={inputWrapperClasses}>
+                  <Mail className={inputIconClasses} size={20}/>
+                  <input
+                      type="email"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      className={inputClasses}
+                      placeholder="Enter your email"
+                      required
+                  />
+                </div>
+              </div>
 
-            <div className="mb-4">
-              <label htmlFor="email" className={labelClasses}>
-                Email
-              </label>
-              <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className={inputClasses}
-                  required
-              />
-            </div>
+              <div>
+                <div className={inputWrapperClasses}>
+                  <Lock className={inputIconClasses} size={20}/>
+                  <input
+                      type="password"
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      className={inputClasses}
+                      placeholder="Create a password"
+                      required
+                  />
+                </div>
+              </div>
 
-            <div className="mb-4">
-              <label htmlFor="password" className={labelClasses}>
-                Password
-              </label>
-              <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  className={inputClasses}
-                  required
-              />
-            </div>
+              <div>
+                <div className={inputWrapperClasses}>
+                  <Lock className={inputIconClasses} size={20}/>
+                  <input
+                      type="password"
+                      value={confirmPassword}
+                      onChange={e => setConfirmPassword(e.target.value)}
+                      className={inputClasses}
+                      placeholder="Confirm your password"
+                      required
+                  />
+                </div>
+              </div>
 
-            <div className="mb-6">
-              <label htmlFor="confirmPassword" className={labelClasses}>
-                Confirm Password
-              </label>
-              <input
-                  type="password"
-                  id="confirmPassword"
-                  value={confirmPassword}
-                  onChange={e => setConfirmPassword(e.target.value)}
-                  className={inputClasses}
-                  required
-              />
-            </div>
+              <button
+                  type="submit"
+                  disabled={loading}
+                  className={`${buttonClasses} bg-[#D96115] hover:bg-[#a44910] text-white`}
+              >
+                {loading ? (
+                    <span className="flex items-center justify-center">
+      <span className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white mr-3"></span>
+      Creating account...
+    </span>
+                ) : 'Create Account'}
+              </button>
 
-            <button
-                type="submit"
-                disabled={loading}
-                className={buttonClasses}
-            >
-              {loading ? (
-                  <span className="flex items-center justify-center">
-                <span className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mr-2"></span>
-                Creating account...
+              <p className="text-center text-sm mt-6">
+              <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>
+                Already have an account?{' '}
               </span>
-              ) : 'Sign Up'}
-            </button>
-          </form>
+                <Link to="/login" className={`${linkClasses} text-[#D96115] hover:text-[#a44910]`}>
+                  Sign in
+                </Link>
+              </p>
+            </form>
+          </div>
 
-          <div className="mt-6 text-center">
-            <p className={linkTextClasses}>
-              Already have an account?{' '}
-              <Link to="/login" className={linkClasses}>
-                Log in
-              </Link>
-            </p>
+          <div className={imageSectionClasses}>
+            <img
+                src="https://img.freepik.com/free-vector/cartoon-recipe-note-with-food_52683-73978.jpg?t=st=1743980658~exp=1743984258~hmac=0e1d1865d0168aecda608dfe5cc23a390e39fd6107aba21db16ebd061031dca4&w=2000"
+                alt="Cooking preparation"
+                className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+              <div className="text-white">
+                <h3 className="text-2xl font-bold mb-2">Start Your Culinary Journey</h3>
+                <p className="text-gray-200">Share and discover amazing recipes!</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
   );
 };
+
 export default Signup;

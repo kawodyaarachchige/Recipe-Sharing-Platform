@@ -28,7 +28,7 @@ const AppContent = () => {
         }
     }, [isDarkMode]);
     return <Router>
-        <div className={`flex flex-col min-h-screen ${isDarkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
+        <div className={`flex flex-col min-h-screen   ${isDarkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
             <Toaster position="top-right" richColors />
             <Header />
             <main className="flex-grow container mx-auto px-4 py-8">
