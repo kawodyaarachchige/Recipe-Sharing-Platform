@@ -10,10 +10,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
-  const {
-    loading,
-    error
-  } = useSelector((state: RootState) => state.auth);
+  const { loading, error } = useSelector((state: RootState) => state.auth);
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
   const dispatch = useDispatch<AppDispatch>();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,53 +27,96 @@ const Login = () => {
       toast.error('An unexpected error occurred');
     }
   };
-  return <div className="max-w-md mx-auto">
-      <div className="bg-white rounded-lg shadow-md p-8">
-        <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800 flex items-center justify-center">
-            <LogInIcon className="mr-2" />
-            Log In
-          </h1>
-          <p className="text-gray-600 mt-2">Welcome back to RecipeShare</p>
-        </div>
-        {error && <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 flex items-start">
-            <AlertCircleIcon className="h-5 w-5 mr-2 mt-0.5" />
-            <div>
-              <p>{error}</p>
-              <button onClick={() => dispatch(clearError())} className="text-sm underline hover:text-red-800">
-                Dismiss
-              </button>
+  const containerClasses = `max-w-md mx-auto ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`;
+  const cardClasses = `rounded-lg shadow-md p-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`;
+  const headingClasses = `text-2xl font-bold flex items-center justify-center ${isDarkMode ? 'text-white' : 'text-gray-800'}`;
+  const subtextClasses = `mt-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`;
+  const errorClasses = `border-l-4 p-4 mb-6 flex items-start ${isDarkMode ? 'bg-red-900 border-red-700 text-red-200' : 'bg-red-100 border-red-500 text-red-700'}`;
+  const labelClasses = `block font-medium mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`;
+  const inputClasses = `w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 ${isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'}`;
+  const buttonClasses = `w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-4 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50 ${isDarkMode ? 'focus:ring-offset-gray-800' : ''}`;
+  const linkTextClasses = `text-gray-600 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`;
+  const linkClasses = `text-teal-600 hover:text-teal-800 font-medium ${isDarkMode ? 'text-teal-400 hover:text-teal-300' : 'text-teal-600 hover:text-teal-800'}`;
+
+  return (
+      <div className={containerClasses}>
+        <div className={cardClasses}>
+          <div className="text-center mb-6">
+            <h1 className={headingClasses}>
+              <LogInIcon className="mr-2" />
+              Log In
+            </h1>
+            <p className={subtextClasses}>Welcome back to RecipeShare</p>
+          </div>
+
+          {error && (
+              <div className={errorClasses}>
+                <AlertCircleIcon className="h-5 w-5 mr-2 mt-0.5" />
+                <div>
+                  <p>{error}</p>
+                  <button
+                      onClick={() => dispatch(clearError())}
+                      className={`text-sm underline ${isDarkMode ? 'hover:text-red-300' : 'hover:text-red-800'}`}
+                  >
+                    Dismiss
+                  </button>
+                </div>
+              </div>
+          )}
+
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label htmlFor="username" className={labelClasses}>
+                Username
+              </label>
+              <input
+                  type="text"
+                  id="username"
+                  value={username}
+                  onChange={e => setUsername(e.target.value)}
+                  className={inputClasses}
+                  required
+              />
             </div>
-          </div>}
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="username" className="block text-gray-700 font-medium mb-2">
-              Username
-            </label>
-            <input type="text" id="username" value={username} onChange={e => setUsername(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" required />
-          </div>
-          <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-700 font-medium mb-2">
-              Password
-            </label>
-            <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" required />
-          </div>
-          <button type="submit" disabled={loading} className="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-4 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50">
-            {loading ? <span className="flex items-center justify-center">
+
+            <div className="mb-6">
+              <label htmlFor="password" className={labelClasses}>
+                Password
+              </label>
+              <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  className={inputClasses}
+                  required
+              />
+            </div>
+
+            <button
+                type="submit"
+                disabled={loading}
+                className={buttonClasses}
+            >
+              {loading ? (
+                  <span className="flex items-center justify-center">
                 <span className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mr-2"></span>
                 Logging in...
-              </span> : 'Log In'}
-          </button>
-        </form>
-        <div className="mt-6 text-center">
-          <p className="text-gray-600">
-            Don't have an account?{' '}
-            <Link to="/signup" className="text-teal-600 hover:text-teal-800 font-medium">
-              Sign up
-            </Link>
-          </p>
+              </span>
+              ) : 'Log In'}
+            </button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <p className={linkTextClasses}>
+              Don't have an account?{' '}
+              <Link to="/signup" className={linkClasses}>
+                Sign up
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
-    </div>;
+  );
 };
 export default Login;
