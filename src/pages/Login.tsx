@@ -151,7 +151,7 @@ const Login = () => {
 
           <div className={imageSectionClasses}>
             <img
-                src="https://img.freepik.com/free-photo/top-view-table-full-delicious-food-composition_23-2149141352.jpg?t=st=1743981026~exp=1743984626~hmac=9e644808bf52459f681b36d454ec6c3a7acf3dd4f089f1750193a09d93c2d6cf&w=2000"
+                src="https://imgur.com/gGIuuxq.png"
                 alt="Delicious food"
                 className="w-full h-full object-cover"
             />

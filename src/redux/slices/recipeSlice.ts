@@ -8,6 +8,7 @@ interface RecipeState {
   loading: boolean;
   error: string | null;
   searchTerm: string;
+
 }
 const initialState: RecipeState = {
   recipes: [],

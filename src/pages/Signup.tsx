@@ -175,7 +175,7 @@ const Signup = () => {
 
           <div className={imageSectionClasses}>
             <img
-                src="https://img.freepik.com/free-vector/cartoon-recipe-note-with-food_52683-73978.jpg?t=st=1743980658~exp=1743984258~hmac=0e1d1865d0168aecda608dfe5cc23a390e39fd6107aba21db16ebd061031dca4&w=2000"
+                src="https://imgur.com/w7dSA70.png"
                 alt="Cooking preparation"
                 className="w-full h-full object-cover"
             />
