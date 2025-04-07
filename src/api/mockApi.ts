@@ -19,7 +19,7 @@ let users: User[] = [{
 }
 ];
 let recipes: Recipe[] = [{
-    id: '4',
+    id: '1',
     title: 'Chicken Tikka Masala',
     description: 'Creamy Indian curry with grilled chicken in spiced tomato sauce.',
     ingredients: [
@@ -49,7 +49,7 @@ let recipes: Recipe[] = [{
     authorName: 'Raj'
 },
     {
-        id: '5',
+        id: '2',
         title: 'Beef Tacos',
         description: 'Crispy Mexican tacos with seasoned beef, salsa, and fresh toppings.',
         ingredients: [
@@ -78,7 +78,7 @@ let recipes: Recipe[] = [{
         authorName: 'Carlos'
     },
     {
-        id: '6',
+        id: '3',
         title: 'Sushi Rolls',
         description: 'Homemade sushi with fresh salmon, avocado, and sticky rice.',
         ingredients: [
@@ -106,7 +106,7 @@ let recipes: Recipe[] = [{
         authorName: 'Yuki'
     },
     {
-        id: '7',
+        id: '4',
         title: 'Hummus',
         description: 'Creamy Middle Eastern dip made with chickpeas, tahini, and lemon.',
         ingredients: [
@@ -133,7 +133,7 @@ let recipes: Recipe[] = [{
         authorName: 'Layla'
     },
     {
-        id: '8',
+        id: '5',
         title: 'Thai',
         description: 'Stir-fried Thai noodles with shrimp, tofu, and peanuts.',
         ingredients: [
@@ -162,7 +162,7 @@ let recipes: Recipe[] = [{
         authorName: 'Narin'
     },
     {
-        id: '9',
+        id: '6',
         title: 'Croissants',
         description: 'Flaky French pastries with buttery layers.',
         ingredients: [
@@ -189,7 +189,7 @@ let recipes: Recipe[] = [{
         authorName: 'Pierre'
     },
     {
-        id: '10',
+        id: '7',
         title: 'Miso Soup',
         description: 'Japanese comfort soup with tofu, seaweed, and miso paste.',
         ingredients: [
@@ -214,7 +214,7 @@ let recipes: Recipe[] = [{
         createdAt: '2023-06-25T12:20:00Z',
         authorName: 'Hiroshi'
     },{
-        id: '11',
+        id: '8',
         title: 'Greek Moussaka',
         description: 'Hearty baked casserole with eggplant, spiced lamb, and creamy béchamel.',
         ingredients: [
@@ -245,7 +245,7 @@ let recipes: Recipe[] = [{
         authorName: 'Elena'
     },
     {
-        id: '12',
+        id: '9',
         title: 'Vietnamese Pho',
         description: 'Aromatic beef noodle soup with star anise, ginger, and fresh herbs.',
         ingredients: [

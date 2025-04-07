@@ -20,3 +20,8 @@ export interface Recipe {
   dietaryInfo: string[];
   createdAt: string;
 }
+export interface TimerState {
+  activeRecipeId: string | null;
+  timeLeft: number;
+  isActive: boolean;
+}

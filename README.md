@@ -40,10 +40,12 @@ A **simplified and stylish recipe-sharing web app** built with React, Redux, and
 - **- Cooking Timer**
     - Interactive countdown timer.
     - Starts from the recipe detail page.
+    - Pauses when user leaves the page.
+    - Restarts when user returns.
+    - Sound notification when timer ends.
 
-- **- Ingredient Substitutions**
-    - Suggestions for alternative ingredients.
-    - Shown within recipe details.
+- **- User Profile**
+    - View saved recipes count and  favorite recipes.
 
 - **- Notifications System**
     - Toasts for success/error actions.
@@ -88,9 +90,10 @@ Light & Dark Mode Preview
 ![Screenshot 12](./screenshots/viewRecipeDark.png)
 ![Screenshot 13](./screenshots/viewFavRecipes.png)
 ![Screenshot 14](./screenshots/editRecipeDark.png)
-![Screenshot 15](./screenshots/shareRecipes.png)
-![Screenshot 16](./screenshots/profileLight.png)
-![Screenshot 17](./screenshots/profile.png)
+![Screenshot 15](./screenshots/timer.png)
+![Screenshot 16](./screenshots/shareRecipes.png)
+![Screenshot 17](./screenshots/profileLight.png)
+![Screenshot 18](./screenshots/profile.png)
 
 ---
 
