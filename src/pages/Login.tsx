@@ -30,19 +30,19 @@ const Login = () => {
     }
   };
 
-  const containerClasses = `min-h-screen flex items-center justify-center p-4 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`;
+  const containerClasses = `h-screen-80 flex items-center justify-center p-4 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`;
   const cardClasses = `w-full max-w-[1200px] grid md:grid-cols-2 rounded-3xl shadow-2xl overflow-hidden ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`;
   const formSectionClasses = `p-8 lg:p-12 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`;
   const imageSectionClasses = `relative hidden md:block`;
   const inputWrapperClasses = `relative`;
-  const inputClasses = `w-full pl-12 pr-4 py-4 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 ${
+  const inputClasses = `w-full pl-12 pr-4 py-4 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#D96115] ${
       isDarkMode
           ? 'bg-gray-700/50 border-gray-600 text-white placeholder-gray-400'
           : 'bg-gray-50 border-gray-200 placeholder-gray-400'
   }`;
   const inputIconClasses = `absolute left-4 top-1/2 -translate-y-1/2 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`;
-  const buttonClasses = `w-full bg-teal-600 hover:bg-teal-500 text-white font-medium py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50`;
-  const linkClasses = `text-teal-600 hover:text-teal-500 font-medium transition-colors ${isDarkMode ? 'text-teal-400 hover:text-teal-300' : ''}`;
+  const buttonClasses = `w-full bg-[#D96115] hover:bg-[#B15E12] text-white font-medium py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50`;
+  const linkClasses = `text-[#D96115]hover:text-[#B15E12] font-medium transition-colors ${isDarkMode ? 'text-[#D96115] hover:text-[#B15E12]' : ''}`;
 
   return (
       <div className={containerClasses}>

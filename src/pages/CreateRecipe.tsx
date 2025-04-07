@@ -33,15 +33,6 @@ const CreateRecipe = () => {
     }
   };
   return <div className="max-w-3xl mx-auto">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-800 flex items-center justify-center">
-          <PlusCircleIcon className="mr-2" />
-          Create New Recipe
-        </h1>
-        <p className="text-gray-600 mt-2">
-          Share your delicious recipes with the world
-        </p>
-      </div>
       <RecipeForm onSubmit={handleSubmit} isSubmitting={loading} initialValues={{
       createdBy: user?.id || ''
     }} />

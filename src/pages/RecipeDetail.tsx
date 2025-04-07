@@ -76,7 +76,7 @@ const RecipeDetail = () => {
   if (loading) {
     return (
         <div className={`flex flex-col items-center justify-center min-h-[60vh] ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-          <div className="animate-spin rounded-full h-16 w-16 border-4 border-teal-500 border-t-transparent mb-4"></div>
+          <div className="animate-spin rounded-full h-16 w-16 border-4 border-[#B15E12]border-t-transparent mb-4"></div>
           <p className={`text-lg font-medium ${isDarkMode ? 'text-gray-300' : 'text-slate-600'}`}>
             Loading recipe...
           </p>
@@ -146,7 +146,7 @@ const RecipeDetail = () => {
                 <div className={`flex items-center px-4 py-2 rounded-full ${
                     isDarkMode ? 'bg-gray-700' : 'bg-gray-100'
                 }`}>
-                  <ClockIcon className="h-5 w-5 mr-2 text-teal-500" />
+                  <ClockIcon className="h-5 w-5 mr-2 text-[#FF871A]" />
                   <span className={isDarkMode ? 'text-gray-200' : 'text-gray-700'}>
                   {currentRecipe.cookingTime} minutes
                 </span>
@@ -154,7 +154,7 @@ const RecipeDetail = () => {
                 <div className={`flex items-center px-4 py-2 rounded-full ${
                     isDarkMode ? 'bg-gray-700' : 'bg-gray-100'
                 }`}>
-                  <UsersIcon className="h-5 w-5 mr-2 text-teal-500" />
+                  <UsersIcon className="h-5 w-5 mr-2 text-[#FF871A]" />
                   <span className={isDarkMode ? 'text-gray-200' : 'text-gray-700'}>
                   {currentRecipe.servings} servings
                 </span>
@@ -189,8 +189,8 @@ const RecipeDetail = () => {
                     onClick={handleShare}
                     className={`p-3 rounded-full transition-all duration-300 ${
                         isDarkMode
-                            ? 'bg-gray-700 text-gray-300 hover:bg-blue-500 hover:text-white'
-                            : 'bg-gray-100 text-gray-600 hover:bg-blue-500 hover:text-white'
+                            ? 'bg-gray-700 text-gray-300 hover:bg-[#FF871A] hover:text-white'
+                            : 'bg-gray-100 text-gray-600 hover:bg-[#FF871A] hover:text-white'
                     }`}
                     aria-label="Share recipe"
                 >
@@ -202,8 +202,8 @@ const RecipeDetail = () => {
                           onClick={() => navigate(`/edit-recipe/${currentRecipe.id}`)}
                           className={`p-3 rounded-full transition-all duration-300 ${
                               isDarkMode
-                                  ? 'bg-gray-700 text-gray-300 hover:bg-teal-500 hover:text-white'
-                                  : 'bg-gray-100 text-gray-600 hover:bg-teal-500 hover:text-white'
+                                  ? 'bg-gray-700 text-gray-300 hover:bg-[#FF871A] hover:text-white'
+                                  : 'bg-gray-100 text-gray-600 hover:bg-[#FF871A] hover:text-white'
                           }`}
                           aria-label="Edit recipe"
                       >
@@ -236,7 +236,7 @@ const RecipeDetail = () => {
                       className={`px-3 py-1 rounded-full text-sm font-medium ${
                           isDarkMode
                               ? 'bg-gray-700 text-gray-200'
-                              : 'bg-teal-50 text-teal-700'
+                              : 'bg-orange-50 text-[#B15E12]'
                       }`}
                   >
                 {info}
@@ -281,7 +281,7 @@ const RecipeDetail = () => {
                           className={`flex gap-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
                       >
                     <span className={`flex-none w-6 h-6 rounded-full flex items-center justify-center text-sm ${
-                        isDarkMode ? 'bg-gray-600 text-gray-200' : 'bg-teal-100 text-teal-700'
+                        isDarkMode ? 'bg-gray-600 text-gray-200' : 'bg-orange-100 text-[#FF871A]'
                     }`}>
                       {index + 1}
                     </span>

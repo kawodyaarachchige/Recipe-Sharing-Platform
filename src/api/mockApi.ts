@@ -10,12 +10,12 @@ let users: User[] = [{
     id: '2',
     username: 'Kusal',
     email: 'kusal@example.com',
-    favoriteRecipes: ['2']
+    favoriteRecipes: []
 },{
     id: '3',
     username: 'Keminda',
     email: 'keminda@example.com',
-    favoriteRecipes: ['3']
+    favoriteRecipes: []
 }
 ];
 let recipes: Recipe[] = [{

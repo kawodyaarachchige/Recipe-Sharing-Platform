@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from '../redux/store';
 import { fetchRecipeById, updateRecipe, clearCurrentRecipe } from '../redux/slices/recipeSlice';
 import RecipeForm from '../components/recipes/RecipeForm';
 import { Recipe } from '../types';
-import { PencilIcon } from 'lucide-react';
+import { PencilIcon, ChefHat, AlertCircle, ArrowLeft, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 const EditRecipe = () => {
@@ -52,44 +52,125 @@ const EditRecipe = () => {
 
   if (loading) {
     return (
-        <div className={`flex justify-center items-center h-64 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-500"></div>
+        <div className={`min-h-[70vh] flex flex-col items-center justify-center ${
+            isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+        }`}>
+          <div className="relative">
+            <Loader2 className={`h-12 w-12 animate-spin ${
+                isDarkMode ? 'text-[#FF871A]' : 'text-[#BC6C25]'
+            }`} />
+            <div className={`mt-4 text-lg font-medium ${
+                isDarkMode ? 'text-gray-300' : 'text-gray-700'
+            }`}>
+              Loading recipe...
+            </div>
+          </div>
         </div>
     );
   }
 
   if (error) {
     return (
-        <div className={`${isDarkMode ? 'bg-red-900 text-red-200 border-red-700' : 'bg-red-100 text-red-700 border-red-400'} border px-4 py-3 rounded`}>
-          <p>Error loading recipe: {error}</p>
+        <div className={`min-h-[70vh] flex flex-col items-center justify-center ${
+            isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+        }`}>
+          <div className={`max-w-md w-full mx-auto p-6 rounded-2xl shadow-lg ${
+              isDarkMode ? 'bg-red-900/20' : 'bg-red-50'
+          }`}>
+            <div className="flex items-center justify-center mb-4">
+              <AlertCircle className={`h-12 w-12 ${
+                  isDarkMode ? 'text-red-400' : 'text-red-500'
+              }`} />
+            </div>
+            <h3 className={`text-xl font-semibold text-center mb-2 ${
+                isDarkMode ? 'text-red-400' : 'text-red-700'
+            }`}>
+              Error Loading Recipe
+            </h3>
+            <p className={`text-center mb-6 ${
+                isDarkMode ? 'text-red-300' : 'text-red-600'
+            }`}>
+              {error}
+            </p>
+            <button
+                onClick={() => navigate('/recipes')}
+                className={`w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 ${
+                    isDarkMode
+                        ? 'bg-red-500/20 hover:bg-red-500/30 text-red-300'
+                        : 'bg-red-100 hover:bg-red-200 text-red-700'
+                }`}
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Recipes
+            </button>
+          </div>
         </div>
     );
   }
 
   if (!currentRecipe) {
     return (
-        <div className={`text-center py-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-          <h3 className={`text-xl font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-            Recipe not found
-          </h3>
+        <div className={`min-h-[70vh] flex flex-col items-center justify-center ${
+            isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+        }`}>
+          <div className={`max-w-md w-full mx-auto p-6 rounded-2xl shadow-lg ${
+              isDarkMode ? 'bg-gray-800' : 'bg-white'
+          }`}>
+            <div className="flex items-center justify-center mb-4">
+              <ChefHat className={`h-12 w-12 ${
+                  isDarkMode ? 'text-gray-400' : 'text-gray-500'
+              }`} />
+            </div>
+            <h3 className={`text-xl font-semibold text-center mb-2 ${
+                isDarkMode ? 'text-gray-300' : 'text-gray-700'
+            }`}>
+              Recipe Not Found
+            </h3>
+            <p className={`text-center mb-6 ${
+                isDarkMode ? 'text-gray-400' : 'text-gray-600'
+            }`}>
+              The recipe you're looking for doesn't exist or has been removed.
+            </p>
+            <button
+                onClick={() => navigate('/recipes')}
+                className={`w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 ${
+                    isDarkMode
+                        ? 'bg-gray-700 hover:bg-gray-600 text-gray-300'
+                        : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                }`}
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Recipes
+            </button>
+          </div>
         </div>
     );
   }
 
-  const containerClasses = `max-w-3xl mx-auto ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`;
-  const headingClasses = `text-3xl font-bold flex items-center justify-center ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`;
-  const subtextClasses = `mt-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`;
-
   return (
-      <div className={containerClasses}>
-        <div className="text-center mb-8 pt-6">
-          <h1 className={headingClasses}>
-            <PencilIcon className="mr-2" />
-            Edit Recipe
-          </h1>
-          <p className={subtextClasses}>Update your recipe details</p>
+      <div className={`min-h-screen py-8 ${
+          isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
+      }`}>
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <button
+                onClick={() => navigate(`/recipes/${id}`)}
+                className={`mb-6 flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 ${
+                    isDarkMode
+                        ? 'text-gray-400 hover:text-gray-300 hover:bg-gray-800'
+                        : 'text-gray-600 hover:text-gray-700 hover:bg-gray-100'
+                }`}
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Recipe
+            </button>
+            <RecipeForm
+                initialValues={currentRecipe}
+                onSubmit={handleSubmit}
+                isSubmitting={loading}
+            />
+          </div>
         </div>
-        <RecipeForm initialValues={currentRecipe} onSubmit={handleSubmit} isSubmitting={loading} />
       </div>
   );
 };

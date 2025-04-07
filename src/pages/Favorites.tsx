@@ -20,10 +20,6 @@ const Favorites = () => {
   return (
       <div>
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center space-x-3 mb-4">
-            <HeartIcon className="h-10 w-10 text-red-500" />
-            <Sparkles className={`h-6 w-6 ${isDarkMode ? 'text-red-400' : 'text-red-500'}`} />
-          </div>
           <h1 className={`text-4xl font-bold mb-4 ${
               isDarkMode ? 'text-white' : 'text-slate-800'
           }`}>

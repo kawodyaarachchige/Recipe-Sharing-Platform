@@ -25,21 +25,21 @@ const Profile = () => {
             isDarkMode ? 'bg-gray-800' : 'bg-white'
         }`}>
           <div className={`px-8 py-12 ${
-              isDarkMode ? 'bg-gradient-to-r from-teal-900 to-teal-800' : 'bg-gradient-to-r from-teal-500 to-teal-600'
+              isDarkMode ? 'bg-gradient-to-r from-orange-500 to-orange-600' : 'bg-gradient-to-r from-[#FF871A] to-[#BA1A1A]'
           }`}>
             <div className="flex items-center gap-6">
               <div className={`rounded-full p-4 ${
                   isDarkMode ? 'bg-gray-800' : 'bg-white'
               }`}>
                 <UserIcon className={`h-12 w-12 ${
-                    isDarkMode ? 'text-teal-400' : 'text-teal-600'
+                    isDarkMode ? 'text-orange-400' : 'tex-orange-600'
                 }`} />
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-white mb-2">
                   {user.username}
                 </h1>
-                <p className={`${isDarkMode ? 'text-teal-200' : 'text-teal-100'}`}>
+                <p className={`${isDarkMode ? 'text-orange-200' : 'text-orange-100'}`}>
                   {user.email}
                 </p>
               </div>
@@ -58,7 +58,7 @@ const Profile = () => {
                       isDarkMode ? 'bg-gray-800' : 'bg-teal-50'
                   }`}>
                     <BookOpenIcon className={`h-6 w-6 ${
-                        isDarkMode ? 'text-teal-400' : 'text-teal-600'
+                        isDarkMode ? 'text-orange-400' : 'text-orange-600'
                     }`} />
                   </div>
                   <div>
